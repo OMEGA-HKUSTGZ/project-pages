@@ -1,0 +1,20 @@
+# Check every page, give every pull request a preview link, and republish the lab site after
+# a push to main. The work is done by the shared workflow in OMEGA-HKUSTGZ/.github.
+name: Project pages
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['README.md', '*/README.md']
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  pages:
+    uses: OMEGA-HKUSTGZ/.github/.github/workflows/project-page.yml@main
+    secrets: inherit
